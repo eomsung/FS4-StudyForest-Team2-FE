@@ -114,10 +114,55 @@ fieldset {
   width: 100%;
 }
 
+.input-container-password {
+  position: relative;
+}
+
+.btn-showPassword {
+  position: absolute;
+
+  width: 24px;
+  top: 43px;
+  left: 660px;
+}
+
 @media (max-width: 744px) {
   /* 744px 이하에서 적용될 스타일 */
 }
 
 @media (max-width: 365px) {
   /* 365px 이하에서 적용될 스타일 */
+
+  html,
+  body {
+    margin: 0; /* 기본 여백 제거 */
+    padding: 0; /* 기본 여백 제거 */
+    width: 100%; /* 화면 너비에 맞게 조정 */
+    /* overflow-x: hidden;  */
+  }
+  .StudyCreate {
+    width: 320px;
+    margin: 0;
+  }
+
+  .background-option-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+  }
+
+  .create-button::before {
+    content: "만들기";
+    position: absolute;
+    top: 13.5px;
+    left: 133px;
+    color: #5e7d57;
+    z-index: -1;
+  }
+
+  .btn-showPassword {
+    top: 43px;
+    left: 280px;
+  }
 }

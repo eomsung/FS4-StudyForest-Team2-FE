@@ -3,6 +3,8 @@ import { createStudyGroup } from "../api/studyService";
 import { useNavigate } from "react-router-dom";
 import "./StudyCreate.css";
 import BackgroundOption from "./BackgroundOption";
+import pwIconOn from "./../img/btn_visibility_on.png";
+import pwIconOff from "./../img/btn_visibility_off.png";
 
 function StudyCreate() {
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ function StudyCreate() {
     password: "",
     passwordConfirm: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -59,6 +62,10 @@ function StudyCreate() {
       ...prevErrors,
       [name]: errorMsg,
     }));
+  };
+
+  const handlePasswordToggle = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   const handleSubmit = async (e) => {
@@ -149,10 +156,10 @@ function StudyCreate() {
           </fieldset>
           {errors.img && <div className="error-msg">*{errors.img}</div>}
         </div>
-        <div className="input-container">
+        <div className="input-container input-container-password">
           <label for="password">비밀번호</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             value={formData.password}
@@ -163,11 +170,17 @@ function StudyCreate() {
           {errors.password && (
             <div className="error-msg">*{errors.password}</div>
           )}
+          <img
+            src={showPassword ? pwIconOn : pwIconOff}
+            className="btn-showPassword"
+            onClick={handlePasswordToggle}
+            alt="password show icon"
+          />
         </div>
-        <div className="input-container">
+        <div className="input-container input-container-password">
           <label for="password-confirm">비밀번호 확인</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password-confirm"
             name="passwordConfirm"
             value={formData.passwordConfirm}
@@ -178,6 +191,12 @@ function StudyCreate() {
           {errors.passwordConfirm && (
             <div className="error-msg">*{errors.passwordConfirm}</div>
           )}
+          <img
+            src={showPassword ? pwIconOn : pwIconOff}
+            className="btn-showPassword"
+            onClick={handlePasswordToggle}
+            alt="password show icon"
+          />
         </div>
         <button type="submit" className="create-button">
           만들기
